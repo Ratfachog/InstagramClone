@@ -13,15 +13,13 @@
         android:layout_height="202dp"
         android:layout_marginTop="24dp"
         android:scaleType="centerCrop"
-        android:scaleX="1.4"
-        android:scaleY="1.3"
         android:src="@mipmap/instaicon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edtEmail"
+        android:id="@+id/edtEmailLog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -35,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/edtUsername"
+        android:id="@+id/edtUsernameLog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -46,10 +44,10 @@
         android:textColorHint="@color/design_default_color_on_secondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/edtEmailLog" />
 
     <EditText
-        android:id="@+id/edtPassword"
+        android:id="@+id/edtPasswordLog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -60,10 +58,10 @@
         android:textColorHint="@color/design_default_color_on_secondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/edtUsernameLog" />
 
     <Button
-        android:id="@+id/btnSignUp"
+        android:id="@+id/btnOrSignUp"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -72,7 +70,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/edtPasswordLog" />
 
     <Button
         android:id="@+id/btnLogin"
@@ -84,5 +82,5 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnSignUp" />
+        app:layout_constraintTop_toBottomOf="@id/btnOrSignUp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

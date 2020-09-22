@@ -7,22 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-import com.parse.SaveCallback;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
-
-import java.util.List;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
-    private Button btnSign, btnLogin;
+    private Button btnSign, btnOrLogin;
     private EditText edtUser, edtEmail, edtPassword;
 
     @Override
@@ -30,16 +24,56 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnSign = findViewById(R.id.btnSignUp);
-        btnLogin = findViewById(R.id.btnLogin);
+        setTitle("Instasham - Sign Up");
 
-        edtUser = findViewById(R.id.edtUsername);
-        edtEmail = findViewById(R.id.edtEmail);
-        edtPassword = findViewById(R.id.edtPassword);
+        btnSign = findViewById(R.id.btnOrSignUp);
+        btnSign.setOnClickListener(this);
+        btnOrLogin = findViewById(R.id.btnLogin);
+        btnOrLogin.setOnClickListener(this);
 
-        btnSign
+        edtUser = findViewById(R.id.edtUsernameLog);
+        edtEmail = findViewById(R.id.edtEmailLog);
+        edtPassword = findViewById(R.id.edtPasswordLog);
+
+        if (ParseUser.getCurrentUser() != null) {
+
+            ParseUser.getCurrentUser().logOut();
+        }
 
     }
 
 
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()) {
+
+            case R.id.btnOrSignUp:
+
+                final ParseUser appUser = new ParseUser();
+                appUser.setEmail(edtEmail.getText().toString());
+                appUser.setUsername(edtUser.getText().toString());
+                appUser.setPassword(edtPassword.getText().toString());
+
+                appUser.signUpInBackground(new SignUpCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (e == null) {
+                            FancyToast.makeText(SignUp.this, "Welcome, " + appUser.getUsername() + "!",
+                                    Toast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
+                        } else {
+                            FancyToast.makeText(SignUp.this, "error: " + e.getMessage(),
+                                    Toast.LENGTH_SHORT, FancyToast.ERROR, false).show();
+                        }
+                    }
+                });
+                break;
+
+            case R.id.btnLogin:
+                Intent intent = new Intent(SignUp.this, LoginActivity.class);
+                startActivity(intent);
+                break;
+        }
+
+    }
 }
